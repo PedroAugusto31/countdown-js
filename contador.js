@@ -22,6 +22,10 @@ function startValues() {
 	minuteTimer = parseInt(secondNumber.textContent) * 60;
 	secondTimer = parseInt(thirdNumber.textContent);
 	totalTime = hourTimer + minuteTimer + secondTimer;
+	dashOffsetTimer(firstCircle, firstNumber, 24, 1);
+	dashOffsetTimer(secondCircle, secondNumber, 60, 1);
+	dashOffsetTimer(thirdCircle, thirdNumber, 60, 1);
+	console.log(totalTime);
 }
 
 startStopButton.addEventListener("click", () => {
@@ -33,9 +37,6 @@ function changeText(id, text) {
 		? document.getElementById(`${id}`).createElement("input")
 		: (document.getElementById(`${id}`).innerHTML = text);
 
-	dashOffsetTimer(firstCircle, firstNumber, 24, 1);
-	dashOffsetTimer(secondCircle, secondNumber, 60, 1);
-	dashOffsetTimer(thirdCircle, thirdNumber, 60, 1);
 	startValues();
 }
 
@@ -47,7 +48,7 @@ function dashOffsetTimer(element, elementText, number, time) {
 }
 
 function start() {
-	if (totalTime > 0) {
+	if (totalTime > 0 && totalTime <= 90060) {
 		isRunning = true;
 		startStopButton.innerHTML = "Pausar";
 		timer = setInterval(updatingTime, 1000);
@@ -57,6 +58,9 @@ function start() {
 
 function pause() {
 	isRunning = false;
+	changeText("time-hour", firstNumber.value);
+	changeText("time-minute", secondNumber.value);
+	changeText("time-second", thirdNumber.value);
 	startStopButton.innerHTML = "Começar";
 	clearInterval(timer);
 }
