@@ -41,6 +41,16 @@ h1 {
 	justify-content: space-around;
 }
 
+.circle1,
+.circle2,
+.circle3 {
+	stroke-dashoffset: #0de5e9;
+	transition: stroke-dashoffset 1s linear;
+}
+
+@keyframes offsetAnim {
+}
+
 .hours svg,
 .minutes svg,
 .seconds svg {

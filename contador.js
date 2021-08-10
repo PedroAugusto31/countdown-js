@@ -58,9 +58,6 @@ function start() {
 
 function pause() {
 	isRunning = false;
-	changeText("time-hour", firstNumber.value);
-	changeText("time-minute", secondNumber.value);
-	changeText("time-second", thirdNumber.value);
 	startStopButton.innerHTML = "Começar";
 	clearInterval(timer);
 }
