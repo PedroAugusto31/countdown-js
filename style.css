@@ -1,0 +1,88 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+
+:root {
+	--background: #022152;
+	--text: #0de5e9;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+	background: var(--background);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+
+h1,
+h2,
+p,
+div {
+	font: 3.6rem "Roboto", sans-serif;
+	color: var(--text);
+	text-shadow: 0 0 50px #00fbff;
+}
+
+h1 {
+	margin-bottom: 2.5rem;
+}
+
+#temporizador {
+	height: 8.5rem;
+	width: 35rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+.hours svg,
+.minutes svg,
+.seconds svg {
+	transform: rotate(-90deg);
+}
+.hours,
+.minutes,
+.seconds {
+	filter: drop-shadow(0 0 50px #00fbff);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#time-hour,
+#time-minute,
+#time-second {
+	position: absolute;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input#hour {
+	height: 5rem;
+	width: 4rem;
+	background: transparent;
+	padding-left: 15%;
+	font-size: 2.5rem;
+	outline: none;
+	color: var(--text);
+}
+
+#start-stop {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 6rem;
+	height: 2.5rem;
+	border-radius: 8px;
+	border: 2px solid var(--text);
+	background: #002b70;
+	color: var(--text);
+}

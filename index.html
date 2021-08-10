@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Temporizador</title>
+		<!-- 0AB5D1 -->
+	</head>
+	<body>
+		<h1>Temporizador</h1>
+		<div id="temporizador">
+			<div class="hours">
+				<svg width="120" height="120">
+					<circle
+						class="circle1"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="#0de5e9"
+						stroke-dasharray="345"
+						stroke-dashoffset="0"
+						stroke-width="5"
+						fill="transparent"
+					/>
+					<circle
+						class="circle-transparent"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="transparent"
+						stroke-dasharray="34"
+						stroke-width="5"
+						fill="#022152"
+					/>
+				</svg>
+				<div id="time-hour">
+					<input
+						type="number"
+						id="hour"
+						onchange="changeText('time-hour', this.value)"
+					/>
+				</div>
+			</div>
+			<div class="minutes">
+				<svg width="120" height="120">
+					<circle
+						class="circle2"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="#0de5e9"
+						stroke-dasharray="345"
+						stroke-dashoffset="0"
+						stroke-width="5"
+						fill="transparent"
+					/>
+					<circle
+						class="circle-transparent"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="transparent"
+						stroke-dasharray="34"
+						stroke-width="5"
+						fill="#022152"
+					/>
+				</svg>
+				<div id="time-minute">
+					<input
+						type="number"
+						id="hour"
+						onchange="changeText('time-minute', this.value)"
+					/>
+				</div>
+			</div>
+			<div class="seconds">
+				<svg width="120" height="120">
+					<circle
+						class="circle3"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="#0de5e9"
+						stroke-dasharray="345"
+						stroke-dashoffset="0"
+						stroke-width="5"
+						fill="transparent"
+					/>
+					<circle
+						class="circle-transparent"
+						cx="60"
+						cy="60"
+						r="55"
+						stroke="transparent"
+						stroke-dasharray="34"
+						stroke-width="5"
+						fill="#022152"
+					/>
+				</svg>
+				<div id="time-second">
+					<input
+						type="number"
+						id="hour"
+						onchange="changeText('time-second', this.value)"
+					/>
+				</div>
+			</div>
+		</div>
+		<section>
+			<div>
+				<button id="start-stop">
+					<img
+						src="https://img.icons8.com/material-outlined/22/0de5e9/clock--v1.png"
+					/>Começar
+				</button>
+			</div>
+		</section>
+		<script src="./contador.js"></script>
+	</body>
+</html>
