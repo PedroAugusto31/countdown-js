@@ -75,3 +75,5 @@ function updatingTime() {
 }
 
 startValues();
+
+// botar somzinho foda no final
