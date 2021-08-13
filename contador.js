@@ -39,7 +39,7 @@ function changeText(id, text) {
 
 	startValues();
 }
-
+//setar o input novo como uma variavel, e adicionar o atributo onchange e chamar a função changeText
 function dashOffsetTimer(element, elementText, number, time) {
 	element.setAttribute(
 		"stroke-dashoffset",
