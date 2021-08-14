@@ -8,36 +8,65 @@ const thirdCircle = document.querySelector("circle.circle3");
 const thirdNumber = document.querySelector("div#time-second");
 
 const startStopButton = document.querySelector("button#start-stop");
+const resetButton = document.querySelector("button#reset");
+const endingAudio = document.querySelector("#ending-audio");
+const clockImage = document.querySelector("#clock-image");
 
 let isRunning,
 	hourTimer,
 	minuteTimer,
 	secondTimer,
 	totalTime,
+	startValueFirst,
+	startValueSecond,
+	startValueThird,
 	timer = null;
 
 function startValues() {
 	isRunning = false;
-	hourTimer = parseInt(firstNumber.textContent) * 60 ** 2;
-	minuteTimer = parseInt(secondNumber.textContent) * 60;
-	secondTimer = parseInt(thirdNumber.textContent);
+	hourTimer = startValueFirst * 60 ** 2;
+	minuteTimer = startValueSecond * 60;
+	secondTimer = startValueThird;
 	totalTime = hourTimer + minuteTimer + secondTimer;
 	dashOffsetTimer(firstCircle, firstNumber, 24, 1);
 	dashOffsetTimer(secondCircle, secondNumber, 60, 1);
 	dashOffsetTimer(thirdCircle, thirdNumber, 60, 1);
-	console.log(totalTime);
 }
 
 startStopButton.addEventListener("click", () => {
-	isRunning ? pause() : start();
+	isRunning
+		? () => {
+				inputs();
+				pause();
+		  }
+		: () => {
+				changeText();
+				start();
+		  };
+});
+resetButton.addEventListener("click", () => {
+	pause();
+	startValues();
+	updatingTime();
+	inputs(firstNumber);
+	inputs(secondNumber);
+	inputs(thirdNumber);
 });
 
 function changeText(id, text) {
-	isRunning
-		? document.getElementById(`${id}`).createElement("input")
-		: (document.getElementById(`${id}`).innerHTML = text);
+	document.getElementById(`${id}`).innerHTML = text;
 
+	startValueFirst = parseInt(firstNumber.textContent);
+	startValueSecond = parseInt(secondNumber.textContent);
+	startValueThird = parseInt(thirdNumber.textContent);
 	startValues();
+}
+
+function inputs(id) {
+	id = document
+		.createElement(`input`)
+		.setAttribute("onchange", changeText(this.id, this.value));
+	console.log("chegou nos inputs");
 }
 //setar o input novo como uma variavel, e adicionar o atributo onchange e chamar a função changeText
 function dashOffsetTimer(element, elementText, number, time) {
@@ -50,7 +79,7 @@ function dashOffsetTimer(element, elementText, number, time) {
 function start() {
 	if (totalTime > 0 && totalTime <= 90060) {
 		isRunning = true;
-		startStopButton.innerHTML = "Pausar";
+		startStopButton.innerHTML = clockImage.outerHTML + "Pausar";
 		timer = setInterval(updatingTime, 1000);
 		return;
 	}
@@ -58,13 +87,18 @@ function start() {
 
 function pause() {
 	isRunning = false;
-	startStopButton.innerHTML = "Começar";
+	startStopButton.innerHTML = clockImage.outerHTML + "Começar";
 	clearInterval(timer);
 }
 
 function updatingTime() {
 	if (totalTime > 0) {
 		totalTime--;
+	}
+	if (totalTime <= 0 && isRunning === true) {
+		endingAudio.play();
+		isRunning = false;
+		return;
 	}
 	firstNumber.innerHTML = Math.floor(totalTime / 60 ** 2);
 	secondNumber.innerHTML = Math.floor((totalTime % 60 ** 2) / 60);
@@ -75,5 +109,3 @@ function updatingTime() {
 }
 
 startValues();
-
-// botar somzinho foda no final

@@ -90,7 +90,15 @@ input#hour {
 	color: var(--text);
 }
 
-#start-stop {
+.buttons {
+	width: 14rem;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 2rem;
+}
+
+#start-stop,
+#reset {
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
