@@ -80,7 +80,7 @@ button:hover {
 	filter: brightness(1.2);
 }
 
-input#hour {
+input {
 	height: 5rem;
 	width: 4rem;
 	background: transparent;

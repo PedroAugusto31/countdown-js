@@ -12,6 +12,8 @@ const resetButton = document.querySelector("button#reset");
 const endingAudio = document.querySelector("#ending-audio");
 const clockImage = document.querySelector("#clock-image");
 
+const inputTest = document.querySelector("div#time-hour input");
+
 let isRunning,
 	hourTimer,
 	minuteTimer,
@@ -21,6 +23,8 @@ let isRunning,
 	startValueSecond,
 	startValueThird,
 	timer = null;
+
+let newInput1, newInput2, newInput3;
 
 function startValues() {
 	isRunning = false;
@@ -33,24 +37,29 @@ function startValues() {
 	dashOffsetTimer(thirdCircle, thirdNumber, 60, 1);
 }
 
+function dashOffsetTimer(element, elementText, number, time) {
+	element.setAttribute(
+		"stroke-dashoffset",
+		(345 / number) * parseInt(elementText.textContent) * time // vezes o número em si, conforme ele vai decaindo
+	);
+}
+
 startStopButton.addEventListener("click", () => {
 	isRunning
-		? () => {
-				inputs();
+		? (() => {
 				pause();
-		  }
-		: () => {
-				changeText();
+		  })()
+		: (() => {
 				start();
-		  };
+		  })();
 });
 resetButton.addEventListener("click", () => {
 	pause();
 	startValues();
 	updatingTime();
-	inputs(firstNumber);
-	inputs(secondNumber);
-	inputs(thirdNumber);
+	inputs(firstNumber, newInput1);
+	inputs(secondNumber, newInput2);
+	inputs(thirdNumber, newInput3);
 });
 
 function changeText(id, text) {
@@ -62,19 +71,14 @@ function changeText(id, text) {
 	startValues();
 }
 
-function inputs(id) {
-	id = document
-		.createElement(`input`)
-		.setAttribute("onchange", changeText(this.id, this.value));
-	console.log("chegou nos inputs");
+function inputs(id, input) {
+	console.log(thirdNumber.id);
+	input = document.createElement("input");
+	input.setAttribute("type", "number");
+	input.setAttribute("onchange", `changeText('${id.id}', this.value)`);
+	id.innerHTML = input.outerHTML;
 }
 //setar o input novo como uma variavel, e adicionar o atributo onchange e chamar a função changeText
-function dashOffsetTimer(element, elementText, number, time) {
-	element.setAttribute(
-		"stroke-dashoffset",
-		(345 / number) * parseInt(elementText.textContent) * time // vezes o número em si, conforme ele vai decaindo
-	);
-}
 
 function start() {
 	if (totalTime > 0 && totalTime <= 90060) {
